@@ -5,7 +5,7 @@
     <md-table v-model="users" md-sort="name" md-sort-order="asc" md-card>
       <md-table-toolbar>
         <h1 class="md-title">Clients</h1>
-        <md-button to="/components/newClient" class="md-dense md-raised md-primary">New Client</md-button>
+        <NewClient />
       </md-table-toolbar>
 
       <md-table-row slot="md-table-row" slot-scope="{ item }">
@@ -20,8 +20,12 @@
 </template>
 
 <script>
+import NewClient from "@/components/NewClient.vue";
   export default {
     name: 'TableSort',
+    components: {
+      NewClient
+    },
     data: () => ({
       users: [
         {

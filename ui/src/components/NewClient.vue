@@ -1,36 +1,63 @@
 <template>
   <div>
     <md-dialog :md-active.sync="showDialog">
-      <md-dialog-title>Preferences</md-dialog-title>
+      <md-dialog-title class="dialog">New Client</md-dialog-title>
+    
+     <md-field md-inline>
+      <label>Name</label>
+      <md-input v-model="inline"></md-input>
+    </md-field>
 
-      <md-tabs md-dynamic-height>
-        <md-tab md-label="General">
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-        </md-tab>
+     <md-field md-inline>
+      <label>Phone:</label>
+      <md-input v-model="inline"></md-input>
+    </md-field>
 
-        <md-tab md-label="Activity">
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-        </md-tab>
+     <md-field md-inline>
+      <label>Email</label>
+      <md-input v-model="inline"></md-input>
+    </md-field>
 
-        <md-tab md-label="Account">
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-        </md-tab>
-      </md-tabs>
-
+    <md-field>
+        <label for="movies">Movies</label>
+        <md-select v-model="selectedMovies" name="movies" id="movies" multiple>
+          <md-option class="doom" value="Provider 1">Provider 1</md-option>
+          <div class="icons">
+            <span style="paddingRight: 20px" class="material-icons">post_add</span>
+            <span class="material-icons">delete</span>
+          </div>
+          <md-option value="Provider 2">Provider 2</md-option>
+          <div class="icons">
+            <span style="paddingRight: 20px" class="material-icons">post_add</span>
+            <span class="material-icons">delete</span>
+          </div>
+          <md-option value="Provider 3">Provider 3</md-option>
+          <div class="icons">
+            <span style="paddingRight: 20px" class="material-icons">post_add</span>
+            <span class="material-icons">delete</span>
+          </div>
+          <md-option value="Provider 4">Provider 4</md-option>
+          <div class="icons">
+            <span style="paddingRight: 20px" class="material-icons">post_add</span>
+            <span class="material-icons">delete</span>
+          </div>
+          <md-option value="Provider 5">Provider 5</md-option>
+          <div class="icons">
+            <span style="paddingRight: 20px" class="material-icons">post_add</span>
+            <span class="material-icons">delete</span>
+          </div>
+        </md-select>
+      </md-field>
+      
+ 
       <md-dialog-actions>
-        <md-button class="md-primary" @click="showDialog = false">Close</md-button>
-        <md-button class="md-primary" @click="showDialog = false">Save</md-button>
+        <md-button class="md-primary" @click="showDialog = false">Cancel</md-button>
+        <md-button class="md-primary" @click="showDialog = false">Add Client</md-button>
       </md-dialog-actions>
     </md-dialog>
 
-    <md-button class="md-primary md-raised" @click="showDialog = true">Show Dialog</md-button>
+    <!-- <md-button class="md-primary md-raised" @click="showDialog = true">Show Dialog</md-button> -->
+    <md-button @click="showDialog = true" class="md-dense md-raised md-primary">New Client</md-button>
   </div>
 </template>
 
@@ -47,4 +74,29 @@
   .md-dialog .md-dialog-container {
     max-width: 768px;
   }
+  .md-field {
+    width: 80%;
+    margin: auto;
+  }
+  .dialog{
+    min-width: 700px;
+  }
+  .form {
+    margin: auto;
+  }
+  .icons {
+    position: relative;
+    bottom: 38px;
+    left: 190px;
+    height: 0px;
+    width: 0px;
+  }
+  .md-list .md-theme-default {
+    overflow: hidden !important;
+  }
+
+   .doom {
+    overflow: hidden !important;
+  }
+ 
 </style>
