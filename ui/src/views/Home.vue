@@ -16,7 +16,6 @@ export default {
   components: {
     HelloWorld,
     NewClient
-
   },
 };
 </script>

@@ -55,7 +55,6 @@
       </md-dialog-actions>
     </md-dialog>
 
-    <!-- <md-button class="md-primary md-raised" @click="showDialog = true">Show Dialog</md-button> -->
     <md-button @click="showDialog = true" class="md-dense md-raised md-primary">New Client</md-button>
   </div>
 </template>
@@ -79,7 +78,7 @@
   }
   .dialog{
     min-width: 700px;
-    border-bottom: 0.5px solid black;
+    border-bottom: 0.5px solid grey;
     padding-bottom: 20px;
   }
   .icons {
@@ -90,7 +89,7 @@
     width: 0px;
   }
   .actions {
-    border-top: 0.5px solid black;
+    border-top: 0.5px solid grey;
     margin-top: 100px;
   }
  

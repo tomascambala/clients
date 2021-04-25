@@ -4,10 +4,21 @@ const { Schema } = mongoose;
 
 const ClientSchema = new Schema(
   {
-    name: String,
-    email: String,
-    phone: String,
-    providers: Number
+    name: {
+      type: String,
+      required: 'Name is required'
+      
+    }, 
+    email: {
+      type: String,
+      required: 'Email is required'
+    },
+    phone: {
+      type: String
+    },
+    providers: {
+      type: String
+    }
   }
 );
 
