@@ -11,8 +11,8 @@
       <md-table-row slot="md-table-row" slot-scope="{ item }">
         <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
         <md-table-cell md-label="Email" md-sort-by="email">{{ item.email }}</md-table-cell>
-        <!-- <md-table-cell md-label="Phone" md-sort-by="phone">{{ item.phone }}</md-table-cell>
-        <md-table-cell md-label="Providers" md-sort-by="providers">{{ item.providers }}</md-table-cell> -->
+        <md-table-cell md-label="Phone" md-sort-by="phone">{{ item.phone }}</md-table-cell>
+        <md-table-cell md-label="Providers" md-sort-by="providers">{{ item.providers }}</md-table-cell>
         <md-table-cell><md-button to="/edit" class="md-primary">Edit</md-button></md-table-cell>
       </md-table-row>
     </md-table>
@@ -28,17 +28,14 @@ import { api } from "@/helpers/helpers.js";
     components: {
       NewClient
     },
-    data() {
+    data: () => {
       return {
         clients: []
       }
     },
-  
       async mounted() {
       this.clients = await api.getClients();
       console.log("clients", this.clients)
-  
-
     }
    
   }

@@ -2,20 +2,20 @@
   <div>
     <md-dialog :md-active.sync="showDialog">
       <md-dialog-title class="dialog">New Client</md-dialog-title>
-    
+    <form action="#" @submit.prevent="onSubmit">
      <md-field md-inline>
       <label>Name</label>
-      <md-input v-model="name"></md-input>
+      <md-input v-model="form.name"></md-input>
     </md-field>
 
      <md-field md-inline>
-      <label>Phone:</label>
-      <md-input v-model="phone"></md-input>
+      <label>Phone</label>
+      <md-input v-model="form.phone"></md-input>
     </md-field>
 
      <md-field md-inline>
       <label>Email</label>
-      <md-input v-model="email"></md-input>
+      <md-input v-model="form.email"></md-input>
     </md-field>
 
     <md-field>
@@ -51,22 +51,57 @@
       
       <md-dialog-actions class="actions">
         <md-button class="md-primary" @click="showDialog = false">Cancel</md-button>
-        <md-button class="md-primary" @click="showDialog = false">Add Client</md-button>
+        <md-button type="submit" class="md-primary" @click="showDialog = false; ">Add Client</md-button>
       </md-dialog-actions>
+        </form>
     </md-dialog>
-
+  
     <md-button @click="showDialog = true" class="md-dense md-raised md-primary">New Client</md-button>
   </div>
 </template>
 
 <script>
+import { api } from "@/helpers/helpers.js";
   export default {
     name: 'NewClient',
     data: () => ({
-      showDialog: false
-    })
+      showDialog: false,
+        form:{
+        name: null,
+        phone: null,
+        email: null
+      }
+     
+    }),
+  methods: {
+    newClient: async function() {
+      // const res = await api.createClient(word);
+      // this.flash('Word created', 'success');
+      console.log("newClient")
+      // this.$router.push(`/words/${res._id}`);
+    
+  },
+    onSubmit: async function() {
+      console.log("sumbmitting")
+       const res = await api.createClient(
+         {
+           name: this.form.name,
+           email: this.form.email,
+           phone: this.form.phone
+
+         }
+       );
+       console.log("response", res)
+        //  window.setTimeout(() => {
+        //   console.log(this.form.name)
+          
+          
+        // }, 1500)
+    }
+   }
   }
 </script>
+
 
 <style lang="scss" scoped>
   .md-dialog .md-dialog-container {
