@@ -5,21 +5,21 @@
     
      <md-field md-inline>
       <label>Name</label>
-      <md-input v-model="inline"></md-input>
+      <md-input v-model="name"></md-input>
     </md-field>
 
      <md-field md-inline>
       <label>Phone:</label>
-      <md-input v-model="inline"></md-input>
+      <md-input v-model="phone"></md-input>
     </md-field>
 
      <md-field md-inline>
       <label>Email</label>
-      <md-input v-model="inline"></md-input>
+      <md-input v-model="email"></md-input>
     </md-field>
 
     <md-field>
-        <label for="movies">Movies</label>
+        <label for="movies">Providers</label>
         <md-select v-model="selectedMovies" name="movies" id="movies" multiple>
           <md-option class="doom" value="Provider 1">Provider 1</md-option>
           <div class="icons">
@@ -49,8 +49,7 @@
         </md-select>
       </md-field>
       
- 
-      <md-dialog-actions>
+      <md-dialog-actions class="actions">
         <md-button class="md-primary" @click="showDialog = false">Cancel</md-button>
         <md-button class="md-primary" @click="showDialog = false">Add Client</md-button>
       </md-dialog-actions>
@@ -80,9 +79,8 @@
   }
   .dialog{
     min-width: 700px;
-  }
-  .form {
-    margin: auto;
+    border-bottom: 0.5px solid black;
+    padding-bottom: 20px;
   }
   .icons {
     position: relative;
@@ -91,12 +89,9 @@
     height: 0px;
     width: 0px;
   }
-  .md-list .md-theme-default {
-    overflow: hidden !important;
-  }
-
-   .doom {
-    overflow: hidden !important;
+  .actions {
+    border-top: 0.5px solid black;
+    margin-top: 100px;
   }
  
 </style>
