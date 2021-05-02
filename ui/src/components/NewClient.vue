@@ -74,30 +74,18 @@ import { api } from "@/helpers/helpers.js";
      
     }),
   methods: {
-    newClient: async function() {
-      // const res = await api.createClient(word);
-      // this.flash('Word created', 'success');
-      console.log("newClient")
-      // this.$router.push(`/words/${res._id}`);
-    
-  },
     onSubmit: async function() {
       console.log("sumbmitting")
-       const res = await api.createClient(
+        await api.createClient(
          {
            name: this.form.name,
            email: this.form.email,
            phone: this.form.phone
-
          }
        );
-       console.log("response", res)
-        //  window.setTimeout(() => {
-        //   console.log(this.form.name)
-          
-          
-        // }, 1500)
+        this.$emit('createOrUpdate', this.form);
     }
+
    }
   }
 </script>

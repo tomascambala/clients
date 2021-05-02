@@ -33,7 +33,7 @@ import { api } from "@/helpers/helpers.js";
         clients: []
       }
     },
-      async mounted() {
+      async updated() {
       this.clients = await api.getClients();
       console.log("clients", this.clients)
     }
