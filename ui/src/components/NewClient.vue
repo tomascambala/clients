@@ -1,7 +1,7 @@
 <template>
   <div>
     <md-dialog :md-active.sync="showDialog">
-      <md-dialog-title class="dialog">New Client</md-dialog-title>
+      <md-dialog-title class="dialog"> {{ id ? "Edit" : "New" }} Client</md-dialog-title>
     <form action="#" @submit.prevent="onSubmit">
      <md-field md-inline>
       <label>Name</label>
@@ -19,8 +19,8 @@
     </md-field>
 
     <md-field>
-        <label for="movies">Providers</label>
-        <md-select v-model="selectedMovies" name="movies" id="movies" multiple>
+        <label for="providers">Providers</label>
+        <md-select name="providers" id="providers" multiple>
           <md-option class="doom" value="Provider 1">Provider 1</md-option>
           <div class="icons">
             <span style="paddingRight: 20px" class="material-icons">post_add</span>
@@ -50,13 +50,19 @@
       </md-field>
       
       <md-dialog-actions class="actions">
+          <md-button  v-if="id" class="md-accent">Delete</md-button>
+          <div>
         <md-button class="md-primary" @click="showDialog = false">Cancel</md-button>
-        <md-button type="submit" class="md-primary" @click="showDialog = false; ">Add Client</md-button>
+        <md-button type="submit" class="md-primary" @click="showDialog = false; ">{{id ? "Save" : "Add"}} Client</md-button>
+        </div>
       </md-dialog-actions>
         </form>
     </md-dialog>
+
+    
+    <md-button v-if="id" @click="showDialog = true"  class="md-primary">Edit</md-button>
+    <md-button v-if="!id" @click="showDialog = true" class="md-dense md-raised md-primary">New Client</md-button>
   
-    <md-button @click="showDialog = true" class="md-dense md-raised md-primary">New Client</md-button>
   </div>
 </template>
 
@@ -64,6 +70,19 @@
 import { api } from "@/helpers/helpers.js";
   export default {
     name: 'NewClient',
+    props: ["id"],
+    // form: {
+    //   type: Object,
+    //   required: false,
+    //   default: () => {
+    //     return {
+    //       name: "",
+    //       email: "",
+    //       phone: "",
+    //     };
+    //   }
+    
+  // },
     data: () => ({
       showDialog: false,
         form:{
@@ -83,7 +102,7 @@ import { api } from "@/helpers/helpers.js";
            phone: this.form.phone
          }
        );
-        this.$emit('createOrUpdate', this.form);
+      //  this.$emit('createOrUpdate', this.form);
     }
 
    }
@@ -114,6 +133,9 @@ import { api } from "@/helpers/helpers.js";
   .actions {
     border-top: 0.5px solid grey;
     margin-top: 100px;
+    justify-content: space-between;
+   
   }
+
  
 </style>

@@ -5,7 +5,7 @@
     <md-table v-model="clients" md-sort="name" md-sort-order="asc" md-card>
       <md-table-toolbar>
         <h1 class="md-title">Clients</h1>
-        <NewClient />
+        <NewClient :clients=this.clients />
       </md-table-toolbar>
 
       <md-table-row slot="md-table-row" slot-scope="{ item }">
@@ -13,7 +13,10 @@
         <md-table-cell md-label="Email" md-sort-by="email">{{ item.email }}</md-table-cell>
         <md-table-cell md-label="Phone" md-sort-by="phone">{{ item.phone }}</md-table-cell>
         <md-table-cell md-label="Providers" md-sort-by="providers">{{ item.providers }}</md-table-cell>
-        <md-table-cell><md-button to="/edit" class="md-primary">Edit</md-button></md-table-cell>
+        <md-table-cell>
+          <!-- <md-button to="/edit" class="md-primary">Edit</md-button> -->
+           <NewClient :id="item._id"/>
+          </md-table-cell>
       </md-table-row>
     </md-table>
   </div>
@@ -33,7 +36,14 @@ import { api } from "@/helpers/helpers.js";
         clients: []
       }
     },
-      async updated() {
+    methods: {
+      createOrUpdate: async function(form) {
+      await api.updateWord(form);
+      // this.flash('Word updated sucessfully!', 'success');
+      // this.$router.push(`/words/${word._id}`);
+    }
+  },
+      async mounted() {
       this.clients = await api.getClients();
       console.log("clients", this.clients)
     }
