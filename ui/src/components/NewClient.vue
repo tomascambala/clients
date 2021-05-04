@@ -49,8 +49,8 @@
         </md-select>
       </md-field>
       
-      <md-dialog-actions class="actions">
-          <md-button  v-if="id" class="md-accent">Delete</md-button>
+      <md-dialog-actions :class="id ? 'actions dlt' : 'actions'">
+          <md-button  v-if="id"  @click.prevent="onDestroy(id);showDialog=false" class="md-accent">Delete</md-button>
           <div>
         <md-button class="md-primary" @click="showDialog = false">Cancel</md-button>
         <md-button type="submit" class="md-primary" @click="showDialog = false; ">{{id ? "Save" : "Add"}} Client</md-button>
@@ -71,18 +71,18 @@ import { api } from "@/helpers/helpers.js";
   export default {
     name: 'NewClient',
     props: ["id"],
-    // form: {
-    //   type: Object,
-    //   required: false,
-    //   default: () => {
-    //     return {
-    //       name: "",
-    //       email: "",
-    //       phone: "",
-    //     };
-    //   }
+    form: {
+      type: Object,
+      required: false,
+      default: () => {
+        return {
+          name: "",
+          email: "",
+          phone: "",
+        };
+      }
     
-  // },
+  },
     data: () => ({
       showDialog: false,
         form:{
@@ -103,6 +103,15 @@ import { api } from "@/helpers/helpers.js";
          }
        );
       //  this.$emit('createOrUpdate', this.form);
+    },
+     async onDestroy(id) {
+      
+
+      await api.deleteClient(id);
+      // this.flash('Word deleted sucessfully!', 'success');
+      // const newWords = this.words.filter(word => word._id !== id);
+      // this.words = newWords;alet
+      // alert("was delete")
     }
 
    }
@@ -133,8 +142,11 @@ import { api } from "@/helpers/helpers.js";
   .actions {
     border-top: 0.5px solid grey;
     margin-top: 100px;
+    // justify-content: space-between;
+  }
+
+  .dlt {
     justify-content: space-between;
-   
   }
 
  

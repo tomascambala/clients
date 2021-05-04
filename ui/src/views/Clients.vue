@@ -5,7 +5,7 @@
     <md-table v-model="clients" md-sort="name" md-sort-order="asc" md-card>
       <md-table-toolbar>
         <h1 class="md-title">Clients</h1>
-        <NewClient :clients=this.clients />
+        <NewClient />
       </md-table-toolbar>
 
       <md-table-row slot="md-table-row" slot-scope="{ item }">
@@ -15,7 +15,7 @@
         <md-table-cell md-label="Providers" md-sort-by="providers">{{ item.providers }}</md-table-cell>
         <md-table-cell>
           <!-- <md-button to="/edit" class="md-primary">Edit</md-button> -->
-           <NewClient :id="item._id"/>
+           <NewClient  :id="item._id"/>
           </md-table-cell>
       </md-table-row>
     </md-table>
