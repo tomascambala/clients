@@ -3,15 +3,16 @@
     <div id="space">
       HERE IS AMAZING CLIENTS_APP
       </div>
-     
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
-    <router-view />
+     <Clients/>
    
   </div>
 </template>
+
+<script>
+
+import Clients from "@/views/Clients.vue";
+
+</script>
 
 <style>
 #app {
@@ -38,7 +39,4 @@
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

@@ -40,7 +40,7 @@ import { api } from "@/helpers/helpers.js";
       createOrUpdate: async function(form) {
       await api.updateWord(form);
       // this.flash('Word updated sucessfully!', 'success');
-      // this.$router.push(`/words/${word._id}`);
+  
     }
   },
       async mounted() {
