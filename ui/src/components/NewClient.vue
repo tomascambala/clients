@@ -50,7 +50,7 @@
       </md-field>
       
       <md-dialog-actions :class="id ? 'actions dlt' : 'actions'">
-          <md-button  v-if="id"  @click.prevent="onDestroy(id);showDialog=false" class="md-accent">Delete</md-button>
+          <md-button  v-if="id"  @click.prevent="onDestroy(id);" class="md-accent">Delete</md-button>
           <div>
         <md-button class="md-primary" @click="showDialog = false">Cancel</md-button>
         <md-button type="submit" class="md-primary" @click="showDialog = false; ">{{id ? "Save" : "Add"}} Client</md-button>
@@ -105,8 +105,9 @@ import { api } from "@/helpers/helpers.js";
       //  this.$emit('createOrUpdate', this.form);
     },
      async onDestroy(id) {
-      
-
+       const sure = window.confirm('Are you sure?');
+      if (!sure) return;
+      this.showDialog=false;
       await api.deleteClient(id);
       // this.flash('Word deleted sucessfully!', 'success');
       // const newWords = this.words.filter(word => word._id !== id);

@@ -15,7 +15,7 @@
         <md-table-cell md-label="Providers" md-sort-by="providers">{{ item.providers }}</md-table-cell>
         <md-table-cell>
           <!-- <md-button to="/edit" class="md-primary">Edit</md-button> -->
-           <NewClient  :id="item._id"/>
+           <NewClient :client="item" :id="item._id"/>
           </md-table-cell>
       </md-table-row>
     </md-table>
