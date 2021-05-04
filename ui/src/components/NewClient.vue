@@ -1,7 +1,7 @@
 <template>
   <div>
     <md-dialog :md-active.sync="showDialog">
-      <md-dialog-title class="dialog"> {{ id ? "Edit" : "New" }} Client</md-dialog-title>
+      <md-dialog-title class="dialog"> {{ form ? "Edit" : "New" }} Client</md-dialog-title>
     <form action="#" @submit.prevent="onSubmit">
      <md-field md-inline>
       <label>Name</label>
@@ -14,7 +14,7 @@
     </md-field>
 
      <md-field md-inline>
-      <label>Email</label>
+      <label>Email{{ form }}</label>
       <md-input v-model="form.email"></md-input>
     </md-field>
 
@@ -49,19 +49,19 @@
         </md-select>
       </md-field>
       
-      <md-dialog-actions :class="id ? 'actions dlt' : 'actions'">
-          <md-button  v-if="id"  @click.prevent="onDestroy(id);" class="md-accent">Delete</md-button>
+      <md-dialog-actions :class="form ? 'actions dlt' : 'actions'">
+          <md-button  v-if="form._id"  @click.prevent="onDestroy(form._id);" class="md-accent">Delete</md-button>
           <div>
         <md-button class="md-primary" @click="showDialog = false">Cancel</md-button>
-        <md-button type="submit" class="md-primary" @click="showDialog = false; ">{{id ? "Save" : "Add"}} Client</md-button>
+        <md-button type="submit" class="md-primary" @click="showDialog = false; ">{{form ? "Save" : "Add"}} Client</md-button>
         </div>
       </md-dialog-actions>
         </form>
     </md-dialog>
 
     
-    <md-button v-if="id" @click="showDialog = true"  class="md-primary">Edit</md-button>
-    <md-button v-if="!id" @click="showDialog = true" class="md-dense md-raised md-primary">New Client</md-button>
+    <md-button v-if="form._id" @click="showDialog = true"  class="md-primary">Edit</md-button>
+    <md-button v-if="!form._id" @click="showDialog = true" class="md-dense md-raised md-primary">New Client</md-button>
   
   </div>
 </template>
@@ -70,7 +70,7 @@
 import { api } from "@/helpers/helpers.js";
   export default {
     name: 'NewClient',
-    props: ["id"],
+    props: {
     form: {
       type: Object,
       required: false,
@@ -81,7 +81,7 @@ import { api } from "@/helpers/helpers.js";
           phone: "",
         };
       }
-    
+    }
   },
     data: () => ({
       showDialog: false,
@@ -110,7 +110,7 @@ import { api } from "@/helpers/helpers.js";
       this.showDialog=false;
       await api.deleteClient(id);
       // this.flash('Word deleted sucessfully!', 'success');
-      // const newWords = this.words.filter(word => word._id !== id);
+      // const newWords = this.words.filter(word => word._form !== id);
       // this.words = newWords;alet
       // alert("was delete")
     }
@@ -130,7 +130,7 @@ import { api } from "@/helpers/helpers.js";
   }
   .dialog{
     min-width: 700px;
-    border-bottom: 0.5px solid grey;
+    border-bottom: 0.5px solform grey;
     padding-bottom: 20px;
   }
   .icons {
@@ -141,7 +141,7 @@ import { api } from "@/helpers/helpers.js";
     width: 0px;
   }
   .actions {
-    border-top: 0.5px solid grey;
+    border-top: 0.5px solform grey;
     margin-top: 100px;
     // justify-content: space-between;
   }
