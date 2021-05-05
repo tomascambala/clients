@@ -14,7 +14,7 @@
     </md-field>
 
      <md-field md-inline>
-      <label>Email{{ form }}</label>
+      <label>Email</label>
       <md-input v-model="form.email"></md-input>
     </md-field>
 
@@ -53,7 +53,7 @@
           <md-button  v-if="form._id"  @click.prevent="onDestroy(form._id);" class="md-accent">Delete</md-button>
           <div>
         <md-button class="md-primary"   @click="cancel()">Cancel</md-button>
-        <md-button class="md-primary" @click="showDialog = false; ">{{form._id ? "Save" : "Add"}} Client</md-button>
+        <md-button type="submit" class="md-primary" @click="showDialog = false; ">{{form._id ? "Save" : "Add"}} Client</md-button>
         </div>
       </md-dialog-actions>
         </form>
