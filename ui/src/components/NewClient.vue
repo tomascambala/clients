@@ -95,13 +95,29 @@ import { api } from "@/helpers/helpers.js";
   methods: {
     onSubmit: async function() {
       console.log("sumbmitting")
-        await api.createClient(
-         {
-           name: this.form.name,
-           email: this.form.email,
-           phone: this.form.phone
-         }
-       );
+
+      console.log(this.form._id)
+         
+
+         if(this.form._id) {
+           console.log("Edit")
+           return await api.updateClient(this.form);
+           
+         } 
+
+         return "submit is finished"
+      // if(!this.form.name){
+       
+      //     const create = await api.createClient(
+      //    {
+      //      name: this.form.name,
+      //      email: this.form.email,
+      //      phone: this.form.phone
+      //    }
+      //  );
+      // return create;
+      // } 
+      //  console.log("EDIT CLIENT")
       //  this.$emit('createOrUpdate', this.form);
     },
      async onDestroy(id) {
