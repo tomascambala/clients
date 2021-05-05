@@ -36,13 +36,6 @@ import { api } from "@/helpers/helpers.js";
         clients: []
       }
     },
-    methods: {
-      createOrUpdate: async function(form) {
-      await api.updateWord(form);
-      // this.flash('Word updated sucessfully!', 'success');
-  
-    }
-  },
       async mounted() {
       this.clients = await api.getClients();
       console.log("clients", this.clients)

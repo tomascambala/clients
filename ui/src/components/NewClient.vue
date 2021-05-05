@@ -1,7 +1,7 @@
 <template>
   <div>
     <md-dialog :md-active.sync="showDialog">
-      <md-dialog-title class="dialog"> {{ form ? "Edit" : "New" }} Client</md-dialog-title>
+      <md-dialog-title class="dialog"> {{ form._id ? "Edit" : "New" }} Client</md-dialog-title>
     <form action="#" @submit.prevent="onSubmit">
      <md-field md-inline>
       <label>Name</label>
@@ -49,11 +49,11 @@
         </md-select>
       </md-field>
       
-      <md-dialog-actions :class="form ? 'actions dlt' : 'actions'">
+      <md-dialog-actions :class="form._id ? 'actions dlt' : 'actions'">
           <md-button  v-if="form._id"  @click.prevent="onDestroy(form._id);" class="md-accent">Delete</md-button>
           <div>
         <md-button class="md-primary" @click="showDialog = false">Cancel</md-button>
-        <md-button type="submit" class="md-primary" @click="showDialog = false; ">{{form ? "Save" : "Add"}} Client</md-button>
+        <md-button type="submit" class="md-primary" @click="showDialog = false; ">{{form._id ? "Save" : "Add"}} Client</md-button>
         </div>
       </md-dialog-actions>
         </form>
@@ -85,7 +85,7 @@ import { api } from "@/helpers/helpers.js";
   },
     data: () => ({
       showDialog: false,
-        form:{
+        forms:{
         name: null,
         phone: null,
         email: null
