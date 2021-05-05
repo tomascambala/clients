@@ -101,18 +101,22 @@ import { api } from "@/helpers/helpers.js";
 
          if(this.form._id) {
            console.log("Edit")
-           return await api.updateClient(this.form); 
+           this.$emit('createOrUpdate', this.form);
+          //  return await api.updateClient(this.form); 
+          return;
          } 
 
         
-     return await api.createClient(
+      await api.createClient(
          {
            name: this.form.name,
            email: this.form.email,
            phone: this.form.phone
          }
        );
-
+  window.location.reload();
+  console.log("RELOADING")
+return;
       // if(!this.form.name){
       
      
@@ -126,6 +130,7 @@ import { api } from "@/helpers/helpers.js";
       if (!sure) return;
       this.showDialog=false;
       await api.deleteClient(id);
+     await api.getClients();
       // this.flash('Word deleted sucessfully!', 'success');
       // const newWords = this.words.filter(word => word._form !== id);
       // this.words = newWords;alet

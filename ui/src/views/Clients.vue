@@ -15,7 +15,7 @@
         <md-table-cell md-label="Providers" md-sort-by="providers">{{ item.providers }}</md-table-cell>
         <md-table-cell>
           <!-- <md-button to="/edit" class="md-primary">Edit</md-button> -->
-           <NewClient :form="item" />
+           <NewClient @createOrUpdate="createOrUpdate" :form="item" />
           </md-table-cell>
       </md-table-row>
     </md-table>
@@ -38,8 +38,16 @@ import { api } from "@/helpers/helpers.js";
     },
       async mounted() {
       this.clients = await api.getClients();
-      console.log("clients", this.clients)
+      console.log("clients", this.clients);
+
+    },
+    methods: {
+       createOrUpdate: async function(client) {
+       await api.createWord(client);
+       console.log("now")
+       window.location.reload()
+       return;
     }
-   
+    }
   }
 </script>
