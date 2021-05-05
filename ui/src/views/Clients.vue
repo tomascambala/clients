@@ -5,7 +5,7 @@
     <md-table v-model="clients" md-sort="name" md-sort-order="asc" md-card>
       <md-table-toolbar>
         <h1 class="md-title">Clients</h1>
-        <NewClient />
+        <Dialog />
       </md-table-toolbar>
 
       <md-table-row slot="md-table-row" slot-scope="{ item }">
@@ -15,7 +15,7 @@
         <md-table-cell md-label="Providers" md-sort-by="providers">{{ item.providers }}</md-table-cell>
         <md-table-cell>
           <!-- <md-button to="/edit" class="md-primary">Edit</md-button> -->
-           <NewClient @createOrUpdate="createOrUpdate" :form="item" />
+           <Dialog :form="item" />
           </md-table-cell>
       </md-table-row>
     </md-table>
@@ -24,12 +24,12 @@
 
 <script>
 
-import NewClient from "@/components/NewClient.vue";
+import Dialog from "@/components/Dialog.vue";
 import { api } from "@/helpers/helpers.js";
   export default {
     name: 'TableSort',
     components: {
-      NewClient
+      Dialog
     },
     data: () => {
       return {
@@ -41,13 +41,5 @@ import { api } from "@/helpers/helpers.js";
       console.log("clients", this.clients);
 
     },
-    methods: {
-       createOrUpdate: async function(client) {
-       await api.createWord(client);
-       console.log("now")
-       window.location.reload()
-       return;
-    }
-    }
   }
 </script>

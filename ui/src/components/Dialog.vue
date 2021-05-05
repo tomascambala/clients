@@ -69,7 +69,7 @@
 <script>
 import { api } from "@/helpers/helpers.js";
   export default {
-    name: 'NewClient',
+    name: 'Dialog',
     props: {
     form: {
       type: Object,
@@ -101,9 +101,9 @@ import { api } from "@/helpers/helpers.js";
 
          if(this.form._id) {
            console.log("Edit")
-           this.$emit('createOrUpdate', this.form);
-          //  return await api.updateClient(this.form); 
-          return;
+     
+           return await api.updateClient(this.form); 
+         
          } 
 
         
@@ -117,20 +117,15 @@ import { api } from "@/helpers/helpers.js";
   window.location.reload();
   console.log("RELOADING")
 return;
-      // if(!this.form.name){
-      
-     
-      // return create;
-      // } 
-      //  console.log("EDIT CLIENT")
-      //  this.$emit('createOrUpdate', this.form);
+
     },
      async onDestroy(id) {
        const sure = window.confirm('Are you sure?');
       if (!sure) return;
       this.showDialog=false;
       await api.deleteClient(id);
-     await api.getClients();
+      window.location.reload();  
+      return;
       // this.flash('Word deleted sucessfully!', 'success');
       // const newWords = this.words.filter(word => word._form !== id);
       // this.words = newWords;alet
