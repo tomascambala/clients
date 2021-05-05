@@ -9,9 +9,14 @@
 </template>
 
 <script>
+import Clients from "./views/Clients.vue";
 
-import Clients from "@/views/Clients.vue";
-
+export default {
+  name: "App",
+  components: {
+    Clients,
+  },
+};
 </script>
 
 <style>
