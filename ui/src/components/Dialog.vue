@@ -52,8 +52,8 @@
       <md-dialog-actions :class="form._id ? 'actions dlt' : 'actions'">
           <md-button  v-if="form._id"  @click.prevent="onDestroy(form._id);" class="md-accent">Delete</md-button>
           <div>
-        <md-button class="md-primary" @click="showDialog = false">Cancel</md-button>
-        <md-button type="submit" class="md-primary" @click="showDialog = false; ">{{form._id ? "Save" : "Add"}} Client</md-button>
+        <md-button class="md-primary"   @click="cancel()">Cancel</md-button>
+        <md-button class="md-primary" @click="showDialog = false; ">{{form._id ? "Save" : "Add"}} Client</md-button>
         </div>
       </md-dialog-actions>
         </form>
@@ -85,7 +85,7 @@ import { api } from "@/helpers/helpers.js";
   },
     data: () => ({
       showDialog: false,
-        forms:{
+        client:{
         name: null,
         phone: null,
         email: null
@@ -95,6 +95,8 @@ import { api } from "@/helpers/helpers.js";
   methods: {
     onSubmit: async function() {
       console.log("sumbmitting")
+
+
 
       // console.log(this.form._id)
          
@@ -119,6 +121,11 @@ import { api } from "@/helpers/helpers.js";
 return;
 
     },
+    cancel(){
+              window.location.reload();
+             this.showDialog=false;
+    },
+   
      async onDestroy(id) {
        const sure = window.confirm('Are you sure?');
       if (!sure) return;
