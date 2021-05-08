@@ -5,19 +5,19 @@
     <form action="#" @submit.prevent="onSubmit">
      <md-field md-inline>
       <label>Name</label>
-      <md-input v-model="form.name"></md-input>
+      <md-input v-model="form.name" required></md-input>
     </md-field>
 
-     <md-field md-inline>
+     <md-field md-inline >
       <label>Phone</label>
-      <md-input v-model="form.phone"></md-input>
+      <md-input v-model="form.phone" required></md-input>
     </md-field>
 
      <md-field md-inline>
       <label>Email</label>
       <md-input v-model="form.email"></md-input>
     </md-field>
-<div>HERE: {{ this.form.providers }}</div>
+
     <md-field>
         <label for="providers">Providers</label>
         <md-select v-model="form.providers" name="providers" id="providers" multiple>
