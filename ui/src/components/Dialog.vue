@@ -20,7 +20,7 @@
 
     <md-field>
         <label for="providers">Providers</label>
-        <md-select name="providers" id="providers" multiple>
+        <md-select v-model="form.providers" name="providers" id="providers" multiple>
           <md-option class="doom" value="1">Provider 1</md-option>
           <div class="icons">
             <span style="paddingRight: 20px" class="material-icons">post_add</span>
@@ -98,11 +98,6 @@ import { api } from "@/helpers/helpers.js";
     onSubmit: async function() {
       console.log("sumbmitting")
 
-
-
-      // console.log(this.form._id)
-         
-
          if(this.form._id) {
            console.log("Edit")
      
@@ -110,16 +105,21 @@ import { api } from "@/helpers/helpers.js";
          
          } 
 
+         const providers = this.form.providers;
+const providersForm  = [];
+for (const element of providers) {
+   providersForm.push({"id": element})
+}
         
       await api.createClient(
          {
            name: this.form.name,
            email: this.form.email,
            phone: this.form.phone,
-           providers: [{id: 5},{id: 2}, {id: 3}]
+           providers: providersForm
          }
        );
-  window.location.reload();
+  // window.location.reload();
   console.log("RELOADING")
 return;
 

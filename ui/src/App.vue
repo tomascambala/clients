@@ -21,7 +21,7 @@ export default {
 
 <style>
 #app {
-  width: 50%;
+  width: 90%;
   min-width: 770px;
   margin: auto;
   font-family: Avenir, Helvetica, Arial, sans-serif;
