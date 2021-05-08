@@ -98,17 +98,18 @@ import { api } from "@/helpers/helpers.js";
     onSubmit: async function() {
       console.log("sumbmitting")
 
+
+         const form = Object.assign({}, this.form)
          const providers = this.form.providers;
-const providersForm  = [];
-for (const element of providers) {
-   providersForm.push({"id": element})
-}
+         const providersForm  = [];
+            for (const element of providers) {
+            providersForm.push({"id": element})
+          }
+
 
          if(this.form._id) {
-           console.log("Edit")
-          this.form.providers = providersForm;
-           return await api.updateClient(this.form); 
-         
+          form.providers = providersForm;
+          return await api.updateClient(form); 
          } 
 
         
@@ -120,7 +121,7 @@ for (const element of providers) {
            providers: providersForm
          }
        );
-  window.location.reload();
+  // window.location.reload();
   console.log("RELOADING")
 return;
 

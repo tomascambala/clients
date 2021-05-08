@@ -39,7 +39,7 @@ import { api } from "@/helpers/helpers.js";
       async mounted() {
       var clients = await api.getClients();
       // const item = clients.map(item => !item.providers[0] ? item.providers[0] : item.providers.map(e => "Provider" + e.id).join() )
-      clients.map(e => console.log(e.providers = e.providers.map(e => e.id)))
+      clients.map(e => e.providers = e.providers.map(e => String(e.id)))
       this.clients = clients;
       console.log("clients", this.clients);
 
