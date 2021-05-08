@@ -2,12 +2,19 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
+const ProviderSchema = new Schema(
+  {
+    id: {
+      type: Number
+    },
+  }
+)
+
 const ClientSchema = new Schema(
   {
     name: {
       type: String,
-      required: 'Name is required'
-      
+      required: 'Name is required'     
     }, 
     email: {
       type: String,
@@ -16,9 +23,7 @@ const ClientSchema = new Schema(
     phone: {
       type: String
     },
-    providers: {
-      type: String
-    }
+    providers: [ProviderSchema],
   }
 );
 

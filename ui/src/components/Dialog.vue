@@ -21,27 +21,27 @@
     <md-field>
         <label for="providers">Providers</label>
         <md-select name="providers" id="providers" multiple>
-          <md-option class="doom" value="Provider 1">Provider 1</md-option>
+          <md-option class="doom" value="1">Provider 1</md-option>
           <div class="icons">
             <span style="paddingRight: 20px" class="material-icons">post_add</span>
             <span class="material-icons">delete</span>
           </div>
-          <md-option value="Provider 2">Provider 2</md-option>
+          <md-option value="2">Provider 2</md-option>
           <div class="icons">
             <span style="paddingRight: 20px" class="material-icons">post_add</span>
             <span class="material-icons">delete</span>
           </div>
-          <md-option value="Provider 3">Provider 3</md-option>
+          <md-option value="3">Provider 3</md-option>
           <div class="icons">
             <span style="paddingRight: 20px" class="material-icons">post_add</span>
             <span class="material-icons">delete</span>
           </div>
-          <md-option value="Provider 4">Provider 4</md-option>
+          <md-option value="4">Provider 4</md-option>
           <div class="icons">
             <span style="paddingRight: 20px" class="material-icons">post_add</span>
             <span class="material-icons">delete</span>
           </div>
-          <md-option value="Provider 5">Provider 5</md-option>
+          <md-option value="5">Provider 5</md-option>
           <div class="icons">
             <span style="paddingRight: 20px" class="material-icons">post_add</span>
             <span class="material-icons">delete</span>
@@ -79,6 +79,7 @@ import { api } from "@/helpers/helpers.js";
           name: "",
           email: "",
           phone: "",
+          providers: []
         };
       }
     }
@@ -88,7 +89,8 @@ import { api } from "@/helpers/helpers.js";
         client:{
         name: null,
         phone: null,
-        email: null
+        email: null,
+        providers: []
       }
      
     }),
@@ -113,7 +115,8 @@ import { api } from "@/helpers/helpers.js";
          {
            name: this.form.name,
            email: this.form.email,
-           phone: this.form.phone
+           phone: this.form.phone,
+           providers: [{id: 5},{id: 2}, {id: 3}]
          }
        );
   window.location.reload();
