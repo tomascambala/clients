@@ -1,11 +1,10 @@
 # Intro
 
-Clients is a simple CRUD app (Create, Read, Update and Delete) using Node, MongoDB and Vue.
+Clients is a simple CRUD app (Create, Read, Update and Delete) using Node, MongoDB and Vue(Vue Material).
 
 ## Requirements
 
 - [Node.js](http://nodejs.org/)
-- [MongoDB](https://www.mongodb.org/)
 
 ## Steps to run app locally
 
