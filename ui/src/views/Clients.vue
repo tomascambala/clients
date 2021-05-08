@@ -12,7 +12,7 @@
         <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
         <md-table-cell md-label="Email" md-sort-by="email">{{ item.email }}</md-table-cell>
         <md-table-cell md-label="Phone" md-sort-by="phone">{{ item.phone }}</md-table-cell>
-        <md-table-cell md-label="Providers">{{ !item.providers[0] ? item.providers[0] : item.providers.map(e => "Provider" + e.id).join() }}</md-table-cell>
+        <md-table-cell md-label="Providers">{{ item.providers.map(e => "Provider" + e).join() }}</md-table-cell>
         <md-table-cell>
           <!-- <md-button to="/edit" class="md-primary">Edit</md-button> -->
            <Dialog :form="item" />
@@ -37,7 +37,10 @@ import { api } from "@/helpers/helpers.js";
       }
     },
       async mounted() {
-      this.clients = await api.getClients();
+      var clients = await api.getClients();
+      // const item = clients.map(item => !item.providers[0] ? item.providers[0] : item.providers.map(e => "Provider" + e.id).join() )
+      clients.map(e => console.log(e.providers = e.providers.map(e => e.id)))
+      this.clients = clients;
       console.log("clients", this.clients);
 
     },

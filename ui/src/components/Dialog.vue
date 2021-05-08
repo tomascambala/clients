@@ -21,7 +21,7 @@
     <md-field>
         <label for="providers">Providers</label>
         <md-select v-model="form.providers" name="providers" id="providers" multiple>
-          <md-option class="doom" value="1">Provider 1</md-option>
+          <md-option value="1">Provider 1</md-option>
           <div class="icons">
             <span style="paddingRight: 20px" class="material-icons">post_add</span>
             <span class="material-icons">delete</span>
