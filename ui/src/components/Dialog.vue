@@ -102,16 +102,13 @@ import { api } from "@/helpers/helpers.js";
       }
     }
   },
-    data: () => ({
+    data(){
+      return {
       showDialog: false,
-        client:{
-        name: null,
-        phone: null,
-        email: null,
-        providers: []
+        client: this.form
       }
-     
-    }),
+      
+    },
      validations: {
       client: {
         name: {
@@ -135,7 +132,7 @@ import { api } from "@/helpers/helpers.js";
   
       //  this.$v.$validate()
 
-      
+       this.$v.$touch()
         
 
 
@@ -145,15 +142,15 @@ import { api } from "@/helpers/helpers.js";
             for (const element of providers) {
             providersForm.push({"id": element})
           }
-
-
+ this.$v.$touch()
+      if (!this.$v.$invalid) {
          if(this.form._id) {
           form.providers = providersForm;
           return await api.updateClient(form); 
          } 
 
-           this.$v.$touch()
-             if (!this.$v.$invalid) {
+          
+             
           
         
       await api.createClient(
