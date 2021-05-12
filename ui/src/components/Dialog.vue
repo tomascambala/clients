@@ -3,14 +3,24 @@
     <md-dialog :md-active.sync="showDialog">
       <md-dialog-title class="dialog"> {{ form._id ? "Edit" : "New" }} Client</md-dialog-title>
     <form action="#" @submit.prevent="onSubmit">
-     <md-field md-inline>
+
+     <!-- <md-field md-inline>
       <label>Name</label>
       <md-input v-model="form.name" required></md-input>
-    </md-field>
+    </md-field> -->
+
+    <div class="md-layout-item md-small-size-100">
+              <md-field :class="getValidationClass('name')">
+                <label for="name">First Name</label>
+                <md-input name="name" id="name" v-model="client.name" />
+                <span class="md-error" v-if="!$v.client.name.required">The first name is required</span>
+                <span class="md-error" v-else-if="!$v.client.name.minlength">at least 3 letters</span>
+              </md-field>
+              </div>
 
      <md-field md-inline >
       <label>Phone</label>
-      <md-input v-model="form.phone" required></md-input>
+      <md-input v-model="form.phone" ></md-input>
     </md-field>
 
      <md-field md-inline>
@@ -53,7 +63,7 @@
           <md-button  v-if="form._id"  @click.prevent="onDestroy(form._id);" class="md-accent">Delete</md-button>
           <div>
         <md-button class="md-primary"   @click="cancel()">Cancel</md-button>
-        <md-button type="submit" class="md-primary" @click="showDialog = false; ">{{form._id ? "Save" : "Add"}} Client</md-button>
+        <md-button type="submit" class="md-primary">{{form._id ? "Save" : "Add"}} Client</md-button>
         </div>
       </md-dialog-actions>
         </form>
@@ -67,9 +77,17 @@
 </template>
 
 <script>
+  import { validationMixin } from 'vuelidate'
+  import {
+    required,
+    // email,
+    minLength,
+    // maxLength
+  } from 'vuelidate/lib/validators'
 import { api } from "@/helpers/helpers.js";
   export default {
     name: 'Dialog',
+    mixins: [validationMixin],
     props: {
     form: {
       type: Object,
@@ -94,9 +112,31 @@ import { api } from "@/helpers/helpers.js";
       }
      
     }),
+     validations: {
+      client: {
+        name: {
+          required,
+          minLength: minLength(3)
+        }
+      }
+    },
   methods: {
+       getValidationClass (fieldName) {
+        const field = this.$v.client[fieldName]
+
+        if (field) {
+          return {
+            'md-invalid': field.$invalid && field.$dirty
+          }
+        }
+      },
     onSubmit: async function() {
       console.log("sumbmitting")
+  
+      //  this.$v.$validate()
+
+      
+        
 
 
          const form = Object.assign({}, this.form)
@@ -112,6 +152,9 @@ import { api } from "@/helpers/helpers.js";
           return await api.updateClient(form); 
          } 
 
+           this.$v.$touch()
+             if (!this.$v.$invalid) {
+          
         
       await api.createClient(
          {
@@ -121,6 +164,8 @@ import { api } from "@/helpers/helpers.js";
            providers: providersForm
          }
        );
+         window.location.reload();
+             }
   // window.location.reload();
   console.log("RELOADING")
 return;
@@ -172,7 +217,6 @@ return;
   .actions {
     border-top: 0.5px solform grey;
     margin-top: 100px;
-    // justify-content: space-between;
   }
 
   .dlt {
