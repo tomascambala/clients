@@ -1,11 +1,12 @@
 <template>
 
   <div>
-    List of clients
+       <span class="myClass">{{ !display ? "List of clients" : display + " a Client"}}</span>
+     
     <md-table v-model="clients" md-sort="name" md-sort-order="asc" md-card>
       <md-table-toolbar>
         <h1 class="md-title">Clients</h1>
-        <Dialog />
+        <Dialog @displayEditOrNew="displayEditOrNew"/>
       </md-table-toolbar>
 
       <md-table-row slot="md-table-row" slot-scope="{ item }">
@@ -14,7 +15,7 @@
         <md-table-cell md-label="Phone" md-sort-by="phone">{{ item.phone }}</md-table-cell>
         <md-table-cell md-label="Providers">{{ item.providers.map(e => "Provider" + e).join() }}</md-table-cell>
         <md-table-cell>
-           <Dialog :form="item" />
+           <Dialog @displayEditOrNew="displayEditOrNew" :form="item" />
           </md-table-cell>
       </md-table-row>
     </md-table>
@@ -32,8 +33,14 @@ import { api } from "@/helpers/helpers.js";
     },
     data: () => {
       return {
-        clients: []
+        clients: [],
+        display: ""
       }
+    },
+    methods: {
+       displayEditOrNew: function(dialogData) {
+          return this.display = dialogData;
+        }
     },
       async mounted() {
       var clients = await api.getClients();

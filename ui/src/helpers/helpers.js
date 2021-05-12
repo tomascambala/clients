@@ -10,7 +10,6 @@ Vue.use(VueFlashMessage, {
   }
 });
 
-// const vm = new Vue();
 const url = 'http://localhost:3000/clients/';
 
 

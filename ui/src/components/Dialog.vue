@@ -106,14 +106,15 @@
       </form>
     </md-dialog>
 
-    <md-button v-if="form._id" @click="showDialog = true" class="md-primary"
-      >Edit & Delete</md-button
-    >
+    
     <md-button
       v-if="!form._id"
-      @click="showDialog = true"
+      @click="handleDialog('Adding')"
       class="md-dense md-raised md-primary"
       >New Client</md-button
+    >
+    <md-button v-if="form._id" @click="handleDialog('Editing')" class="md-primary"
+      >Edit & Delete</md-button
     >
   </div>
 </template>
@@ -167,6 +168,10 @@ export default {
     },
   },
   methods: {
+     handleDialog(val) {
+       this.showDialog = true;
+       this.$emit('displayEditOrNew', val);      
+    },
     getValidationClass(fieldName) {
       const field = this.$v.client[fieldName];
 
@@ -211,7 +216,6 @@ export default {
       window.location.reload();
       this.showDialog = false;
     },
-
     async onDestroy(id) {
       const sure = window.confirm("Are you sure?");
       if (!sure) return;

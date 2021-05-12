@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <div id="space">
-      HERE IS AMAZING CLIENTS_APP
-      </div>
-     <Clients/>
-   
+     <Clients/>  
   </div>
 </template>
 
@@ -29,15 +25,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
   color: #2c3e50;
+  padding-top: 50px;
 }
 
 #nav {
   padding: 30px;
 }
 
-#space {
+/* #space {
   height: 50px;
-}
+} */
 
 #nav a {
   font-weight: bold;
