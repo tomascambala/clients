@@ -9,24 +9,43 @@
       <md-input v-model="form.name" required></md-input>
     </md-field> -->
 
-    <div class="md-layout-item md-small-size-100">
+    <div class="md-layout-item md-small-size-100" style="marginTop:1rem">
               <md-field :class="getValidationClass('name')">
-                <label for="name">First Name</label>
+                <label for="name">Name</label>
                 <md-input name="name" id="name" v-model="client.name" />
-                <span class="md-error" v-if="!$v.client.name.required">The first name is required</span>
-                <span class="md-error" v-else-if="!$v.client.name.minlength">at least 3 letters</span>
+                <span class="md-error" v-if="!$v.client.name.required">The name is required</span>
+                <span class="md-error" v-else-if="!$v.client.name.minlength">At least 3 letters</span>
               </md-field>
               </div>
 
-     <md-field md-inline >
+     <!-- <md-field md-inline >
       <label>Phone</label>
       <md-input v-model="form.phone" ></md-input>
-    </md-field>
+    </md-field> -->
 
-     <md-field md-inline>
+     <div class="md-layout-item md-small-size-100" style="marginTop:1rem">
+              <md-field :class="getValidationClass('phone')">
+                <label for="phone">Phone</label>
+                <md-input name="phone" id="phone" v-model="client.phone" />
+               <span class="md-error" v-if="!$v.client.phone.required">The phone is required</span>
+               <span class="md-error" v-else-if="!$v.client.name.minlength">At least 3 digits</span>
+              </md-field>
+              </div>
+
+     <!-- <md-field md-inline>
       <label>Email</label>
       <md-input v-model="form.email"></md-input>
-    </md-field>
+    </md-field> -->
+
+    <div class="md-layout-item md-small-size-100" style="marginTop:1rem; marginBottom: 1rem">
+              <md-field :class="getValidationClass('email')">
+                <label for="email">Email</label>
+                <md-input name="email" id="email" v-model="client.email" />
+                <span class="md-error" v-if="!$v.client.email.email">Invalid email</span>
+                <!-- <span class="md-error" v-if="!$v.client.email.required">The first name is required</span> -->
+                <!-- <span class="md-error" v-else-if="!$v.client.email.minlength">at least 3 letters</span> -->
+              </md-field>
+              </div>
 
     <md-field>
         <label for="providers">Providers</label>
@@ -70,7 +89,7 @@
     </md-dialog>
 
     
-    <md-button v-if="form._id" @click="showDialog = true"  class="md-primary">Edit</md-button>
+    <md-button v-if="form._id" @click="showDialog = true"  class="md-primary">Edit & Delete</md-button>
     <md-button v-if="!form._id" @click="showDialog = true" class="md-dense md-raised md-primary">New Client</md-button>
   
   </div>
@@ -80,9 +99,9 @@
   import { validationMixin } from 'vuelidate'
   import {
     required,
-    // email,
+    email,
     minLength,
-    // maxLength
+    maxLength
   } from 'vuelidate/lib/validators'
 import { api } from "@/helpers/helpers.js";
   export default {
@@ -113,7 +132,15 @@ import { api } from "@/helpers/helpers.js";
       client: {
         name: {
           required,
-          minLength: minLength(3)
+          minLength: minLength(3),
+          maxLength: maxLength(15)
+        },
+        phone: {
+          required,
+          minLength: minLength(3),
+        },
+        email: {
+          email
         }
       }
     },
@@ -130,7 +157,7 @@ import { api } from "@/helpers/helpers.js";
     onSubmit: async function() {
       console.log("sumbmitting")
   
-      //  this.$v.$validate()
+
 
        this.$v.$touch()
         
@@ -142,10 +169,13 @@ import { api } from "@/helpers/helpers.js";
             for (const element of providers) {
             providersForm.push({"id": element})
           }
- this.$v.$touch()
+
+
+
       if (!this.$v.$invalid) {
          if(this.form._id) {
           form.providers = providersForm;
+          this.showDialog=false;
           return await api.updateClient(form); 
          } 
 
@@ -161,10 +191,10 @@ import { api } from "@/helpers/helpers.js";
            providers: providersForm
          }
        );
+      
          window.location.reload();
              }
-  // window.location.reload();
-  console.log("RELOADING")
+
 return;
 
     },
@@ -180,10 +210,7 @@ return;
       await api.deleteClient(id);
       window.location.reload();  
       return;
-      // this.flash('Word deleted sucessfully!', 'success');
-      // const newWords = this.words.filter(word => word._form !== id);
-      // this.words = newWords;alet
-      // alert("was delete")
+
     }
 
    }
