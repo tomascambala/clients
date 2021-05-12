@@ -14,7 +14,6 @@
         <md-table-cell md-label="Phone" md-sort-by="phone">{{ item.phone }}</md-table-cell>
         <md-table-cell md-label="Providers">{{ item.providers.map(e => "Provider" + e).join() }}</md-table-cell>
         <md-table-cell>
-          <!-- <md-button to="/edit" class="md-primary">Edit</md-button> -->
            <Dialog :form="item" />
           </md-table-cell>
       </md-table-row>
@@ -27,7 +26,7 @@
 import Dialog from "@/components/Dialog.vue";
 import { api } from "@/helpers/helpers.js";
   export default {
-    name: 'TableSort',
+    name: 'Clients',
     components: {
       Dialog
     },
@@ -38,11 +37,8 @@ import { api } from "@/helpers/helpers.js";
     },
       async mounted() {
       var clients = await api.getClients();
-      // const item = clients.map(item => !item.providers[0] ? item.providers[0] : item.providers.map(e => "Provider" + e.id).join() )
       clients.map(e => e.providers = e.providers.map(e => String(e.id)))
-      this.clients = clients;
-      console.log("clients", this.clients);
-
+      return this.clients = clients;
     },
   }
 </script>

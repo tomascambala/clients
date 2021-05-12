@@ -10,33 +10,29 @@ Vue.use(VueFlashMessage, {
   }
 });
 
-const vm = new Vue();
+// const vm = new Vue();
 const url = 'http://localhost:3000/clients/';
 
-const handleError = fn => (...params) =>
-  fn(...params).catch(error => {
-    vm.flash(`${error.response.status}: ${error.response.statusText}`, 'error');
-  });
 
 export const api = {
-  getClient: handleError(async id => {
+  getClient: async (id) => {
     const res = await axios.get(url + id);
     return res.data;
-  }),
-  getClients: handleError(async () => {
+  },
+  getClients: async () => {
     const res = await axios.get(url);
     return res.data;
-  }),
-  deleteClient: handleError(async id => {
+  },
+  deleteClient: async (id) => {
     const res = await axios.delete(url + id);
     return res.data;
-  }),
-  createClient: handleError(async payload => {
+  },
+  createClient: async (payload) => {
     const res = await axios.post(url, payload);
     return res.data;
-  }),
-  updateClient: handleError(async payload => {
+  },
+  updateClient: async (payload) => {
     const res = await axios.put(url + payload._id, payload);
     return res.data;
-  })
+  }
 };
