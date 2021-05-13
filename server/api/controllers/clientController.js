@@ -1,13 +1,6 @@
 const mongoose = require('mongoose');
 const Client = mongoose.model('Client');
 
-exports.read_a_client = (req, res) => {
-  Client.findById(req.params.clientId, (err, client) => {
-    if (err) res.send(err);
-    res.json(client);
-  });
-};
-
 exports.update_a_client = (req, res) => {
   Client.findOneAndUpdate(
     { _id: req.params.clientId },
@@ -30,7 +23,7 @@ exports.delete_a_client = (req, res) => {
   });
 };
 
-exports.list_all_clientIds = (req, res) => {
+exports.list_all_clients = (req, res) => {
   Client.find({}, (err, clients) => {
     if (err) res.send(err);
     res.json(clients);

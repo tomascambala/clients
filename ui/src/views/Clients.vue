@@ -1,11 +1,8 @@
 <template>
-
   <div>
     <div class="title">
      <span >{{ !display ? "List of clients" : display + " a Client"}}</span>
     </div>
-  
-     
     <md-table v-model="clients" md-sort="name" md-sort-order="asc" md-card>
       <md-table-toolbar>
         <h1 class="md-title">Clients</h1>
@@ -14,8 +11,8 @@
 
       <md-table-row slot="md-table-row" slot-scope="{ item }">
         <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
-        <md-table-cell md-label="Email" md-sort-by="email">{{ item.email }}</md-table-cell>
         <md-table-cell md-label="Phone" md-sort-by="phone">{{ item.phone }}</md-table-cell>
+        <md-table-cell md-label="Email" md-sort-by="email">{{ item.email }}</md-table-cell>
         <md-table-cell md-label="Providers">{{ item.providers.map(e => "Provider" + e).join() }}</md-table-cell>
         <md-table-cell>
            <Dialog @displayEditOrNew="displayEditOrNew" :form="item" />
@@ -28,7 +25,7 @@
 <script>
 
 import Dialog from "@/components/Dialog.vue";
-import { api } from "@/helpers/helpers.js";
+import { api } from "@/helpers/api.js";
   export default {
     name: 'Clients',
     components: {
@@ -58,6 +55,4 @@ import { api } from "@/helpers/helpers.js";
   font-size: 2rem;
   height: 3rem;
 }
-
-
 </style>

@@ -16,12 +16,12 @@ const ClientSchema = new Schema(
       type: String,
       required: 'Name is required'     
     }, 
-    email: {
+    phone: {
       type: String,
       required: 'Email is required'
     },
-    phone: {
-      type: String
+    email: {
+      type: String,  
     },
     providers: [ProviderSchema],
   }

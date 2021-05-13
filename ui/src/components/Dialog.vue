@@ -129,7 +129,7 @@ import {
   minLength,
   maxLength,
 } from "vuelidate/lib/validators";
-import { api } from "@/helpers/helpers.js";
+import { api } from "@/helpers/api.js";
 export default {
   name: "Dialog",
   mixins: [validationMixin],
@@ -223,7 +223,6 @@ export default {
   },
 };
 </script>
-
 
 <style lang="scss" scoped>
 .md-dialog .md-dialog-container {
