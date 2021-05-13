@@ -62,7 +62,10 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true},(e)=>{
  *     example: 'cambalatomas@gmail.com'
  *    providers:
  *     type: object
- *     description: list of providers
+ *     properties:
+ *      id:
+ *        type: number
+ *        example: 3
  */
 
 
@@ -73,7 +76,7 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true},(e)=>{
  *    description: Use to request all clients
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful get of clients lists
  */
 
 /**
@@ -82,36 +85,28 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true},(e)=>{
  *  put:
  *   summary: update client
  *   description: update client
- *   consumes:
- *    - application/json
- *   produces:
- *    - application/json
  *   parameters:
  *    - in: path
- *      name: client
+ *      name: clientId
  *      schema:
  *       type: string
  *      required: true
- *      description: id of the client
  *    - in: body
  *      name: body
  *      required: true
- *      description: object
- *      properties:
- *        name:
- *          type: string
- *        phone:
- *          type: string
- *        email:
- *          type: string
- *        providers:
- *          type: object
- *          properties:
- *            id:
- *              type: number
+ *      description: body of client
+ *      schema:
+ *        $ref: '#/definitions/Client'
+ *   requestBody:
+ *    content:
+ *     application/json:
+ *      schema:
+ *       $ref: '#/definitions/Client'
  *   responses:
  *    200:
  *     description: success
+ *    500:
+ *     description : error
  */
 
 
@@ -125,7 +120,7 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true},(e)=>{
  *    - in: body
  *      name: body
  *      required: true
- *      description: body of the team
+ *      description: body of the client
  *      schema:
  *       $ref: '#/definitions/Client'
  *   requestBody:
