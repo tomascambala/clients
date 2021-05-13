@@ -18,8 +18,8 @@ export default {
 <style>
 #app {
   width: 90%;
-  min-width: 770px;
+  min-width: 48.125rem;
   margin: auto;
-  padding-top: 50px;
+  padding-top: 3.125rem;
 }
 </style>

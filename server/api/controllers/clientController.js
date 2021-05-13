@@ -37,5 +37,3 @@ exports.create_a_client = (req, res) => {
     res.json(client);
   });
 };
-
-
