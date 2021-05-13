@@ -26,11 +26,8 @@ const swaggerOptions = {
   apis: ["server.js"]
 };
 
-
-
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,7 +35,7 @@ app.use(bodyParser.json());
 
 mongoose.Promise = global.Promise;
 mongoose.set('useFindAndModify', false);
-mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true},(e)=>{
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, (e) => {
   console.log("connected to DB")
 });
 
@@ -69,15 +66,15 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true},(e)=>{
  */
 
 
- /**
- * @swagger
- * /clients:
- *  get:
- *    description: Use to request all clients
- *    responses:
- *      '200':
- *        description: A successful get of clients lists
- */
+/**
+* @swagger
+* /clients:
+*  get:
+*    description: Use to request all clients
+*    responses:
+*      200:
+*        description: A successful get of clients lists
+*/
 
 /**
  * @swagger
@@ -105,53 +102,49 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true},(e)=>{
  *   responses:
  *    200:
  *     description: success
- *    500:
- *     description : error
  */
 
 
- /**
- * @swagger
- * /clients:
- *  post:
- *   summary: create client
- *   description: create client
- *   parameters:
- *    - in: body
- *      name: body
- *      required: true
- *      description: body of the client
- *      schema:
- *       $ref: '#/definitions/Client'
- *   requestBody:
- *    content:
- *     application/json:
- *      schema:
- *       $ref: '#/definitions/Client'
- *   responses:
- *    200:
- *     description: success
- *    500:
- *     description : error
- */
+/**
+* @swagger
+* /clients:
+*  post:
+*   summary: create client
+*   description: create client
+*   parameters:
+*    - in: body
+*      name: body
+*      required: true
+*      description: body of the client
+*      schema:
+*       $ref: '#/definitions/Client'
+*   requestBody:
+*    content:
+*     application/json:
+*      schema:
+*       $ref: '#/definitions/Client'
+*   responses:
+*    200:
+*     description: success
+*/
 
- /**
- * @swagger
- * /clients/{clientId}:
- *  delete:
- *   summary: delete client
- *   description: delete client via clientId
- *   parameters:
- *    - in: path
- *      name: clientId
- *      schema:
- *       type: string
- *      required: true
- *      description: id of the client
- *   responses:
- *    200:
- *     description: success
- */
+/**
+* @swagger
+* /clients/{clientId}:
+*  delete:
+*   summary: delete client
+*   description: delete client via clientId
+*   parameters:
+*    - in: path
+*      name: clientId
+*      schema:
+*       type: string
+*      required: true
+*      description: id of the client
+*   responses:
+*    200:
+*     description: success
+*/
 routes(app);
 
 app.listen(port);

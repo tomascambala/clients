@@ -20,7 +20,6 @@ exports.update_a_client = (req, res) => {
   Client.findOneAndUpdate(
     { _id: req.params.clientId },
     req.body,
-    { new: true },
     (err, client) => {
       if (err) res.send(err);
       res.json(client);
