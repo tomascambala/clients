@@ -5,7 +5,7 @@
         {{ form._id ? "Edit" : "New" }} Client</md-dialog-title
       >
       <form action="#" @submit.prevent="onSubmit">
-        <div class="md-layout-item md-small-size-100" style="marginTop: 1rem">
+        <div class="md-layout-item md-small-size-100 space">
           <md-field :class="getValidationClass('name')">
             <label for="name">Name</label>
             <md-input name="name" id="name" v-model="client.name" />
@@ -18,7 +18,7 @@
           </md-field>
         </div>
 
-        <div class="md-layout-item md-small-size-100" style="marginTop: 1rem">
+        <div class="md-layout-item md-small-size-100 space">
           <md-field :class="getValidationClass('phone')">
             <label for="phone">Phone</label>
             <md-input name="phone" id="phone" v-model="client.phone" />
@@ -30,10 +30,7 @@
             >
           </md-field>
         </div>
-        <div
-          class="md-layout-item md-small-size-100"
-          style="marginTop: 1rem; marginBottom: 1rem"
-        >
+        <div class="md-layout-item md-small-size-100 space">
           <md-field :class="getValidationClass('email')">
             <label for="email">Email</label>
             <md-input name="email" id="email" v-model="client.email" />
@@ -43,7 +40,7 @@
           </md-field>
         </div>
 
-        <md-field>
+        <md-field class="space">
           <label for="providers">Providers</label>
           <md-select
             v-model="form.providers"
@@ -205,7 +202,7 @@ export default {
           email: this.form.email,
           phone: this.form.phone,
           providers: providersForm,
-        });   
+        });
       }
       return;
     },
@@ -246,6 +243,10 @@ export default {
   left: 11.875rem;
   height: 0rem;
   width: 0rem;
+}
+
+.space {
+  margin-top: 1rem;
 }
 
 .actions {

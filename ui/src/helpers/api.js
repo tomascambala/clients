@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const url = 'http://localhost:3000/clients/';
+const url = "http://localhost:3000/clients/";
 
 export const api = {
   getClients: async () => {
@@ -18,5 +18,5 @@ export const api = {
   updateClient: async (payload) => {
     const res = await axios.put(url + payload._id, payload);
     return res.data;
-  }
+  },
 };
