@@ -250,7 +250,8 @@ export default {
       display: none;
     }
     .actions {
-      margin-top: 0rem;
+      margin-top: 0rem !important;
+      border: none !important;
     }
 }
 
