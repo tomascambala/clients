@@ -1,7 +1,10 @@
 <template>
 
   <div>
-       <span class="myClass">{{ !display ? "List of clients" : display + " a Client"}}</span>
+    <div class="title">
+     <span >{{ !display ? "List of clients" : display + " a Client"}}</span>
+    </div>
+  
      
     <md-table v-model="clients" md-sort="name" md-sort-order="asc" md-card>
       <md-table-toolbar>
@@ -49,3 +52,12 @@ import { api } from "@/helpers/helpers.js";
     },
   }
 </script>
+
+<style>
+.title {
+  font-size: 2rem;
+  height: 3rem;
+}
+
+
+</style>
