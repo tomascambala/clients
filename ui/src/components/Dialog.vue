@@ -235,6 +235,7 @@ export default {
   min-width: 43.75rem;
   border-bottom: 0.5px solid grey;
   padding-bottom: 1.25rem;
+  display: none;
 }
 
 .icons {
@@ -243,6 +244,12 @@ export default {
   left: 11.875rem;
   height: 0rem;
   width: 0rem;
+}
+
+@media screen and ( max-height: 700px ){
+    .dialog {
+      display: none;
+    }
 }
 
 .space {
