@@ -249,6 +249,9 @@ export default {
     .dialog {
       display: none;
     }
+    .actions {
+      margin-top: 0rem;
+    }
 }
 
 .space {
