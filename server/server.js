@@ -42,6 +42,30 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true},(e)=>{
   console.log("connected to DB")
 });
 
+/**
+ * @swagger
+ * definitions:
+ *  Client:
+ *   type: object
+ *   properties:
+ *    name:
+ *     type: string
+ *     description: name of the client
+ *     example: 'Tomas'
+ *    phone:
+ *     type: string
+ *     description: name of the client
+ *     example: '+421 (0) 948 510 915'
+ *    email:
+ *     type: string
+ *     description: email of the client
+ *     example: 'cambalatomas@gmail.com'
+ *    providers:
+ *     type: object
+ *     description: list of providers
+ */
+
+
  /**
  * @swagger
  * /clients:
@@ -84,12 +108,37 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true},(e)=>{
  *          type: object
  *          properties:
  *            id:
- *              type: string
+ *              type: number
  *   responses:
  *    200:
  *     description: success
  */
 
+
+ /**
+ * @swagger
+ * /clients:
+ *  post:
+ *   summary: create client
+ *   description: create client
+ *   parameters:
+ *    - in: body
+ *      name: body
+ *      required: true
+ *      description: body of the team
+ *      schema:
+ *       $ref: '#/definitions/Client'
+ *   requestBody:
+ *    content:
+ *     application/json:
+ *      schema:
+ *       $ref: '#/definitions/Client'
+ *   responses:
+ *    200:
+ *     description: success
+ *    500:
+ *     description : error
+ */
 
  /**
  * @swagger
