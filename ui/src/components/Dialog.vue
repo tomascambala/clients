@@ -5,7 +5,7 @@
         {{ form._id ? "Edit" : "New" }} Client</md-dialog-title
       >
       <form action="#" @submit.prevent="onSubmit">
-        <div class="md-layout-item md-small-size-100" style="margintop: 1rem">
+        <div class="md-layout-item md-small-size-100" style="marginTop: 1rem">
           <md-field :class="getValidationClass('name')">
             <label for="name">Name</label>
             <md-input name="name" id="name" v-model="client.name" />
@@ -18,7 +18,7 @@
           </md-field>
         </div>
 
-        <div class="md-layout-item md-small-size-100" style="margintop: 1rem">
+        <div class="md-layout-item md-small-size-100" style="marginTop: 1rem">
           <md-field :class="getValidationClass('phone')">
             <label for="phone">Phone</label>
             <md-input name="phone" id="phone" v-model="client.phone" />
@@ -32,7 +32,7 @@
         </div>
         <div
           class="md-layout-item md-small-size-100"
-          style="margintop: 1rem; marginbottom: 1rem"
+          style="marginTop: 1rem; marginBottom: 1rem"
         >
           <md-field :class="getValidationClass('email')">
             <label for="email">Email</label>
