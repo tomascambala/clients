@@ -23,7 +23,6 @@ const swaggerOptions = {
       servers: ["http://localhost:3000"]
     }
   },
-  // ['.routes/*.js']
   apis: ["server.js"]
 };
 
@@ -44,11 +43,57 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true},(e)=>{
   console.log("connected to DB")
 });
 
+ /**
+ * @swagger
+ * /clients:
+ *  get:
+ *    description: Use to request all clients
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
+
+ /**
+ * @swagger
+ * /clients:
+ *    post:
+ *      description: Use to create new client
+ *    parameters:
+ *      - name: customer
+ *        in: query
+ *        description: Name of our customer
+ *        required: false
+ *        schema:
+ *          type: string
+ *          format: string
+ *    responses:
+ *      '201':
+ *        description: Successfully created user
+ */
+
 /**
  * @swagger
- * /customers:
+ * /clients:
  *    put:
- *      description: Use to return all customers
+ *      description: Use to update client
+ *    parameters:
+ *      - name: customer
+ *        in: query
+ *        description: Name of our customer
+ *        required: false
+ *        schema:
+ *          type: string
+ *          format: string
+ *    responses:
+ *      '201':
+ *        description: Successfully created user
+ */
+
+/**
+ * @swagger
+ * /clients:
+ *    delete:
+ *      description: Use to delete client
  *    parameters:
  *      - name: customer
  *        in: query
@@ -63,8 +108,6 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true},(e)=>{
  */
 
 routes(app);
-
-
 
 app.listen(port);
 
