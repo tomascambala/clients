@@ -38,7 +38,6 @@ app.use(bodyParser.json());
 
 mongoose.Promise = global.Promise;
 mongoose.set('useFindAndModify', false);
-
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true},(e)=>{
   console.log("connected to DB")
 });
@@ -53,60 +52,62 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true},(e)=>{
  *        description: A successful response
  */
 
+/**
+ * @swagger
+ * /clients/{clientId}:
+ *  put:
+ *   summary: update client
+ *   description: update client
+ *   consumes:
+ *    - application/json
+ *   produces:
+ *    - application/json
+ *   parameters:
+ *    - in: path
+ *      name: client
+ *      schema:
+ *       type: string
+ *      required: true
+ *      description: id of the client
+ *    - in: body
+ *      name: body
+ *      required: true
+ *      description: object
+ *      properties:
+ *        name:
+ *          type: string
+ *        phone:
+ *          type: string
+ *        email:
+ *          type: string
+ *        providers:
+ *          type: object
+ *          properties:
+ *            id:
+ *              type: string
+ *   responses:
+ *    200:
+ *     description: success
+ */
+
+
  /**
  * @swagger
- * /clients:
- *    post:
- *      description: Use to create new client
- *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
- *        schema:
- *          type: string
- *          format: string
- *    responses:
- *      '201':
- *        description: Successfully created user
+ * /clients/{clientId}:
+ *  delete:
+ *   summary: delete client
+ *   description: delete client via clientId
+ *   parameters:
+ *    - in: path
+ *      name: clientId
+ *      schema:
+ *       type: string
+ *      required: true
+ *      description: id of the client
+ *   responses:
+ *    200:
+ *     description: success
  */
-
-/**
- * @swagger
- * /clients:
- *    put:
- *      description: Use to update client
- *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
- *        schema:
- *          type: string
- *          format: string
- *    responses:
- *      '201':
- *        description: Successfully created user
- */
-
-/**
- * @swagger
- * /clients:
- *    delete:
- *      description: Use to delete client
- *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
- *        schema:
- *          type: string
- *          format: string
- *    responses:
- *      '201':
- *        description: Successfully created user
- */
-
 routes(app);
 
 app.listen(port);
