@@ -106,15 +106,17 @@
       </form>
     </md-dialog>
 
-    
     <md-button
       v-if="!form._id"
       @click="handleDialog('Adding')"
       class="md-dense md-raised md-primary"
       >New Client</md-button
     >
-    <md-button v-if="form._id" @click="handleDialog('Editing')" class="md-primary"
-      >Edit & Delete</md-button
+    <md-button
+      v-if="form._id"
+      @click="handleDialog('Editing')"
+      class="md-primary"
+      >Edit/Delete</md-button
     >
   </div>
 </template>
@@ -168,9 +170,9 @@ export default {
     },
   },
   methods: {
-     handleDialog(val) {
-       this.showDialog = true;
-       this.$emit('displayEditOrNew', val);      
+    handleDialog(val) {
+      this.showDialog = true;
+      this.$emit("displayEditOrNew", val);
     },
     getValidationClass(fieldName) {
       const field = this.$v.client[fieldName];
@@ -182,8 +184,6 @@ export default {
       }
     },
     onSubmit: async function () {
-      console.log("sumbmitting");
-
       this.$v.$touch();
 
       const form = Object.assign({}, this.form);
@@ -199,17 +199,14 @@ export default {
           this.showDialog = false;
           return await api.updateClient(form);
         }
-
-        await api.createClient({
+        window.location.reload();
+        return await api.createClient({
           name: this.form.name,
           email: this.form.email,
           phone: this.form.phone,
           providers: providersForm,
-        });
-
-        window.location.reload();
+        });   
       }
-
       return;
     },
     cancel() {
@@ -220,9 +217,8 @@ export default {
       const sure = window.confirm("Are you sure?");
       if (!sure) return;
       this.showDialog = false;
-      await api.deleteClient(id);
       window.location.reload();
-      return;
+      return await api.deleteClient(id);
     },
   },
 };
@@ -231,27 +227,31 @@ export default {
 
 <style lang="scss" scoped>
 .md-dialog .md-dialog-container {
-  max-width: 768px;
+  max-width: 48rem;
 }
+
 .md-field {
   width: 80%;
   margin: auto;
 }
+
 .dialog {
-  min-width: 700px;
-  border-bottom: 0.5px solform grey;
-  padding-bottom: 20px;
+  min-width: 43.75rem;
+  border-bottom: 0.5px solid grey;
+  padding-bottom: 1.25rem;
 }
+
 .icons {
   position: relative;
-  bottom: 38px;
-  left: 190px;
-  height: 0px;
-  width: 0px;
+  bottom: 2.375rem;
+  left: 11.875rem;
+  height: 0rem;
+  width: 0rem;
 }
+
 .actions {
-  border-top: 0.5px solform grey;
-  margin-top: 100px;
+  border-top: 0.5px solid grey;
+  margin-top: 6.25rem;
 }
 
 .dlt {

@@ -14,10 +14,10 @@ const url = 'http://localhost:3000/clients/';
 
 
 export const api = {
-  getClient: async (id) => {
-    const res = await axios.get(url + id);
-    return res.data;
-  },
+  // getClient: async (id) => {
+  //   const res = await axios.get(url + id);
+  //   return res.data;
+  // },
   getClients: async () => {
     const res = await axios.get(url);
     return res.data;
