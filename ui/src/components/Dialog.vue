@@ -19,6 +19,16 @@
         </div>
 
         <div class="md-layout-item md-small-size-100 space">
+          <md-field :class="getValidationClass('email')">
+            <label for="email">Email</label>
+            <md-input name="email" id="email" v-model="client.email" />
+            <span class="md-error" v-if="!$v.client.email.email"
+              >Invalid email</span
+            >
+          </md-field>
+        </div>
+
+        <div class="md-layout-item md-small-size-100 space">
           <md-field :class="getValidationClass('phone')">
             <label for="phone">Phone</label>
             <md-input name="phone" id="phone" v-model="client.phone" />
@@ -27,15 +37,6 @@
             >
             <span class="md-error" v-else-if="!$v.client.name.minlength"
               >At least 3 digits</span
-            >
-          </md-field>
-        </div>
-        <div class="md-layout-item md-small-size-100 space">
-          <md-field :class="getValidationClass('email')">
-            <label for="email">Email</label>
-            <md-input name="email" id="email" v-model="client.email" />
-            <span class="md-error" v-if="!$v.client.email.email"
-              >Invalid email</span
             >
           </md-field>
         </div>
@@ -245,14 +246,14 @@ export default {
   width: 0rem;
 }
 
-@media screen and ( max-height: 650px ){
-    .dialog {
-      display: none;
-    }
-    .actions {
-      margin-top: 0rem !important;
-      border: none !important;
-    }
+@media screen and (max-height: 650px) {
+  .dialog {
+    display: none;
+  }
+  .actions {
+    margin-top: 0rem !important;
+    border: none !important;
+  }
 }
 
 .space {
