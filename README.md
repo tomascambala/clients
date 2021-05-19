@@ -12,7 +12,7 @@ Clients is a simple CRUD app (Create, Read, Update and Delete) using Node, Mongo
 2. cd clients/server
 3. npm i
 4. npm run start
-5. open new tab
+5. open new tab(Terminal)
 6. cd ../ui
 7. npm i
 8. npm run serve
