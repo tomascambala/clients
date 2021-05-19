@@ -12,8 +12,9 @@ Clients is a simple CRUD app (Create, Read, Update and Delete) using Node, Mongo
 2. cd clients/server
 3. npm i
 4. npm run start
-5. cd ../ui
-6. npm i
-7. npm run serve
-8. Go to http://localhost:8080/
-9. Go to http://locahost:3000/api-docs
+5. open new tab
+6. cd ../ui
+7. npm i
+8. npm run serve
+9. Go to http://localhost:8080/
+10. Go to http://locahost:3000/api-docs
