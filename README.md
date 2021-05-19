@@ -4,7 +4,8 @@ Clients is a simple CRUD app (Create, Read, Update and Delete) using Node, Mongo
 
 ## Requirements
 
-- [Node.js](http://nodejs.org/)
+- Node (version 12)
+- NPM (version 6 or 7)
 
 ## Steps to run app locally
 
