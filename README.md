@@ -15,7 +15,7 @@ Clients is a simple CRUD app (Create, Read, Update and Delete) using Node, Mongo
 4. npm run start
 5. open new tab(Terminal)
 6. cd ../ui
-7. npm i
+7. npm i  ... (npm audit fix)
 8. npm run serve (if see npm the error, please install vue js globally: npm install -g @vue/cli@latest)
 9. Go to http://localhost:8080/
 10. Go to http://locahost:3000/api-docs
